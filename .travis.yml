@@ -1,29 +1,27 @@
----
 language: node_js
 node_js:
-  - "6"
-
+- '6'
 sudo: false
 dist: trusty
-
 addons:
   chrome: stable
-
 cache:
   yarn: true
-
 env:
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-
+  - JOBS=1
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
-
+- curl -o- -L https://yarnpkg.com/install.sh | bash
+- export PATH=$HOME/.yarn/bin:$PATH
 install:
-  - yarn install --non-interactive
-
+- yarn install --non-interactive
 script:
-  - yarn lint:js
-  - yarn test
+- yarn lint:js
+- yarn test
+deploy:
+  provider: heroku
+  api_key:
+    secure: FJUmae0gFKMZB0TjLRiuolhAJJ9mfHQuSG+0qwO0m9UcuJmRm5MygK5Yp6Sk3j7ih+JXWzfGxXeQ4IM7DKI+dtAtVOgXUZORQh4g9fHT3wJfCPlwGIlzOz2b7YLl5b2BPdipegktvm7EYXkrBReqFs0eskEc83k5q6wYdHnAt79evujNcHhpRfcgsYYx16n8v+11JIIpicihO7HWND+pPcCCiEJwMum2aEjv8AAyHFOP6M1myrPn/uK8SEMDfOI1ND0vWjDPFmbijDWb2DazKCCsGXLiePsTzgMxp24/Grt5YkoXrDGWPX7ICqkweVnBQsT27mCblVUkeC0MQujChxMBgCZVGejtIE5MU2uAy1/jWwWLOoD7hEaogWkpgvCl75q81/nN4EvP6HnAiIvZcRujG4o3ggTIUy9Nn3I5Fp/SuWHnhQY2SOVKt66ACFQtVPiKfKRezyLVJDp3OL0u14TpMkNAga++0fYYM3GQ9cmMXE0uNVfc5ing9wls643OMGRX2+clxM6CHKR2yDjj/zS9MnVk2bT/Ts4EhoQBjy9/s9N4Smy2D3mKXs1OWFqm8PTKW20J3VMcwbXkv6FEEXrGe8Psr1kzWpbWbIUdvgQ/NCUCXzk8+Z1WNifOAtMlSf04lzmeYEMWLHa/WZPk9yyCosML3OeMmA3XXyY5SRg=
+  app: todos-ember-fastboot
+  on:
+    repo: NickBeukema/Todos-Ember-Fastboot
